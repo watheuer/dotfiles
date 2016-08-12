@@ -4,9 +4,10 @@ let g:solarized_termtrans = 1
 colorscheme solarized
 set number
 
+let delimitMate_expand_cr = 1
 set nocompatible
 filetype off
-
+set backspace=2
 let g:airline_powerline_fonts = 1
 set tabstop=2
 set shiftwidth=2
@@ -24,22 +25,30 @@ autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
+autocmd FileType java set sw=4
+autocmd FileType java set ts=4
+autocmd FileType java set sts=4
+
+autocmd FileType json set sw=4
+autocmd FileType json set ts=4
+autocmd FileType json set sts=4
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdtree'
 Plugin 'shougo/vimproc.vim'
-Plugin 'shougo/vimshell.vim'
 Plugin 'raimondi/delimitmate'
-Plugin 'valloric/youcompleteme'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 set laststatus=2
+let g:EclimCompletionMethod = 'omnifunc'
 filetype plugin indent on
 
-let delimitMate_expand_cr = 1
 map <C-n> :NERDTreeToggle<CR>
