@@ -1,4 +1,6 @@
 set rtp+=~/.vim/bundle/Vundle.vim
+set nocompatible
+filetype plugin indent on
 
 " Colors and highlighting
 syntax enable
@@ -28,7 +30,7 @@ set backspace=2 " make backspace work like you'd think
 
 " Airline settings
 let g:airline_powerline_fonts = 1
-set laststatus=2 " always show status bar
+"set laststatus=2 " always show status bar
 
 " YCM settings
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -36,8 +38,22 @@ let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_confirm_extra_conf =0
+let g:ycm_add_preview_to_completeopt= 0
+let g:ycm_confirm_extra_conf = 0
+
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ ]
 
 " Syntastic settings
 set completeopt-=preview
@@ -50,7 +66,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Grammarous filetypes
-let g:grammarous#default_comments_only_filetypes = {'*' : 1, 'help' : 0, 'markdown' : 0,}
+let g:grammarous#default_comments_only_filetypes = {'*' : 1, 'help' : 0, 'markdown' : 0, 'latex' : 0, 'tex' : 0,}
 
 " NERDTree toggle
 map <C-n> :NERDTreeToggle<CR>
